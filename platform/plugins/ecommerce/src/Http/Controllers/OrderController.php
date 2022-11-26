@@ -445,9 +445,8 @@ class OrderController extends BaseController
             $file =  $request->file('order_video');
             /* Creating a unique name for the file. */
             $filename = time().rand(100,999) . strtolower(trim($file->getClientOriginalExtension()));
-            /* Creating a new instance of the FFmpeg class and passing the file, watermarkpath,
-            filename and watermark size. */
-            $ffmpeg = new FFmpeg($file,$watermarkpath,$filename,80);
+            /* Creating a new instance of the FFmpeg class, and passing the following parameters: */
+            $ffmpeg = new FFmpeg($file,$watermarkpath,$filename,80,0.5);
             $ffmpeg->runcmd();
 
             /* Uploading the video to the server. */

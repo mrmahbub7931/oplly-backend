@@ -44,46 +44,22 @@ class OrderAdminManagement {
                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     onload: function(response) {
+                        $('#main-order-content').load(window.location.href + ' #main-order-content > *');
+                        console.log(response);
                         Canopy.showSuccess(response.message);
                     },
                     onerror: function(response) {
+                        console.log(response);
                         Canopy.showSuccess(response.message);
                     },
                 },
             }
         });
-        $(document).on('click', '.choose_file_btn button', event => {
-            event.preventDefault();
-            let _self = $(event.currentTarget);
-            // console.log(_self.closest('form').prop('action'));
-            // console.log(_self.closest('form').serialize());
-            _self.addClass('button-loading');
-            $.ajax({
-                type: 'POST',
-                cache: false,
-                url: _self.closest('form').prop('action'),
-                data: _self.closest('form').serialize(),
-                success: res => {
-                    console.log(res);
-                    // if (!res.error) {
-                    //     $('#main-order-content').load(window.location.href + ' #main-order-content > *');
-                    //     _self.closest('div').remove();
-                    //     Canopy.showSuccess(res.message);
-                    // } else {
-                    //     Canopy.showError(res.message);
-                    // }
-                    _self.removeClass('button-loading');
-                },
-                error: res => {
-                    Canopy.handleError(res);
-                    _self.removeClass('button-loading');
-                }
-            });
-        });
 
 
         $(document).on('click', '.btn-trigger-complete', event => {
             event.preventDefault();
+            alert("work");
             let _self = $(event.currentTarget);
             _self.addClass('button-loading');
             _self.removeClass('hidden');

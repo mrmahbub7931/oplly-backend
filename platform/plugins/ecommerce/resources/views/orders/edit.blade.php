@@ -409,7 +409,13 @@
                 <div class="flexbox-auto-content ml15 mr15 text-upper">
                   <span>VIDEO DELIVERABLE</span>
                 </div>
-
+                <div class="choose_file_btn flexbox-auto-content">
+                  <form action="{{ route('orders.upload-order-video',$order->id) }}" enctype="multipart/form-data" method="POST">
+                      @csrf
+                      <input type="hidden" id="video_upload_url" value="{{ route('orders.upload-order-video',$order->id) }}" name="video_upload_url">
+                      <input type="file" class="" name="order_video" id="order_video">
+                  </form>
+                </div>
 
                 @if ($order->status !=
                 \Canopy\Ecommerce\Enums\OrderStatusEnum::COMPLETED)
