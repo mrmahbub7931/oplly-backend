@@ -1,0 +1,10 @@
+{
+    "name": "Mollie Payment Gateway",
+    "namespace": "Canopy\\Mollie\\",
+    "provider": "Canopy\\Mollie\\Providers\\MollieServiceProvider",
+    "author": "Source Town Creative",
+    "url": "https://source.run",
+    "version": "1.0",
+    "description": "Mollie payment gateway integration",
+    "require": []
+}

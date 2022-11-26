@@ -1,0 +1,9 @@
+{
+    "name": "Contact Form",
+    "namespace": "Canopy\\Contact\\",
+    "provider": "Canopy\\Contact\\Providers\\ContactServiceProvider",
+    "author": "Source Town Creative",
+    "url": "https://source.run",
+    "version": "5.8",
+    "description": "Contact Form"
+}

@@ -1,0 +1,9 @@
+{
+    "name": "Newsletter",
+    "namespace": "Canopy\\Newsletter\\",
+    "provider": "Canopy\\Newsletter\\Providers\\NewsletterServiceProvider",
+    "author": "Source Town Creative",
+    "url": "https://source.run",
+    "version": "5.8",
+    "description": "Newsletter"
+}

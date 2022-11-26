@@ -1,0 +1,8 @@
+{
+    "name": "canopy/mollie",
+    "description": "Mollie payment gateway",
+    "type": "package",
+    "require": {
+        "mollie/laravel-mollie": "^2.0"
+    }
+}

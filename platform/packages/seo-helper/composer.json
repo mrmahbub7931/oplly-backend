@@ -1,0 +1,24 @@
+{
+    "name": "canopy/seo-helper",
+    "description": "SEO helper package for Canopy CMS application",
+    "type": "package",
+    "autoload": {
+        "psr-4": {
+            "Canopy\\SeoHelper\\": "src"
+        }
+    },
+    "require": {
+        "canopy/platform": "*@dev",
+        "canopy/theme": "*@dev"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Canopy\\SeoHelper\\Providers\\SeoHelperServiceProvider"
+            ],
+            "aliases": {
+                "SeoHelper": "Canopy\\SeoHelper\\Facades\\SeoHelperFacade"
+            }
+        }
+    }
+}

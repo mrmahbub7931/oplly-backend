@@ -1,0 +1,5 @@
+{
+    "name": "canopy/mobileapp",
+    "description": "Mobile App Config plugin",
+    "type": "package"
+}

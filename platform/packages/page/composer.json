@@ -1,0 +1,21 @@
+{
+    "name": "canopy/page",
+    "description": "Page package for Canopy CMS application",
+    "type": "package",
+    "autoload": {
+        "psr-4": {
+            "Canopy\\Page\\": "src"
+        }
+    },
+    "require": {
+        "canopy/platform": "*@dev",
+        "canopy/revision": "*@dev"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Canopy\\Page\\Providers\\PageServiceProvider"
+            ]
+        }
+    }
+}

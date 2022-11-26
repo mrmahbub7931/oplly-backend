@@ -1,0 +1,9 @@
+{
+    "name": "Social Login",
+    "namespace": "Canopy\\SocialLogin\\",
+    "provider": "Canopy\\SocialLogin\\Providers\\SocialLoginServiceProvider",
+    "author": "Source Town Creative",
+    "url": "https://source.run",
+    "version": "5.7",
+    "description": "Easier and faster login with Facebook, LinkedIn, Github or Google."
+}

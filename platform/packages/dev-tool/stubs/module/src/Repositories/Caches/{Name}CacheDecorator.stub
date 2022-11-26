@@ -1,0 +1,11 @@
+<?php
+
+namespace Canopy\{Module}\Repositories\Caches;
+
+use Canopy\Support\Repositories\Caches\CacheAbstractDecorator;
+use Canopy\{Module}\Repositories\Interfaces\{Name}Interface;
+
+class {Name}CacheDecorator extends CacheAbstractDecorator implements {Name}Interface
+{
+
+}

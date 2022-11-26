@@ -1,0 +1,18 @@
+{
+    "name": "canopy/{-name}",
+    "description": "{Name} package for Canopy CMS application",
+    "type": "package",
+    "autoload": {
+        "psr-4": {
+            "Canopy\\{Name}\\": "src"
+        }
+    },
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Canopy\\{Name}\\Providers\\{Name}ServiceProvider"
+            ]
+        }
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "name": "Analytics",
+    "namespace": "Canopy\\Analytics\\",
+    "provider": "Canopy\\Analytics\\Providers\\AnalyticsServiceProvider",
+    "author": "Source Town Creative",
+    "url": "https://source.run",
+    "version": "5.8",
+    "description": "Tracking data from Google Analytics"
+}

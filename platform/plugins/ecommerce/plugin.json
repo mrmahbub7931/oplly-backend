@@ -1,0 +1,9 @@
+{
+    "name": "Oplly",
+    "namespace": "Canopy\\Ecommerce\\",
+    "provider": "Canopy\\Ecommerce\\Providers\\EcommerceServiceProvider",
+    "author": "Source Town Creative",
+    "url": "https://source.run",
+    "version": "1.1",
+    "description": "Plugin for Opply E-commerce features"
+}

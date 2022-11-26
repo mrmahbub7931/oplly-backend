@@ -1,0 +1,8 @@
+{
+    "name": "canopy/simple-slider",
+    "description": "Simple slider plugin",
+    "type": "package",
+    "require": {
+        "doctrine/dbal": "^2.9"
+    }
+}

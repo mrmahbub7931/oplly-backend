@@ -1,0 +1,10 @@
+<?php
+
+namespace Canopy\{Module}\Repositories\Eloquent;
+
+use Canopy\Support\Repositories\Eloquent\RepositoriesAbstract;
+use Canopy\{Module}\Repositories\Interfaces\{Name}Interface;
+
+class {Name}Repository extends RepositoriesAbstract implements {Name}Interface
+{
+}

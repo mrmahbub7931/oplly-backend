@@ -1,0 +1,24 @@
+{
+    "name": "canopy/menu",
+    "description": "Menu package for Canopy CMS application",
+    "type": "package",
+    "autoload": {
+        "psr-4": {
+            "Canopy\\Menu\\": "src"
+        }
+    },
+    "require": {
+        "canopy/platform": "*@dev",
+        "canopy/theme": "*@dev"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Canopy\\Menu\\Providers\\MenuServiceProvider"
+            ],
+            "aliases": {
+                "Menu": "Canopy\\Menu\\Facades\\MenuFacade"
+            }
+        }
+    }
+}

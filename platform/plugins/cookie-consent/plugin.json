@@ -1,0 +1,9 @@
+{
+    "name": "Cookie Consent",
+    "namespace": "Canopy\\CookieConsent\\",
+    "provider": "Canopy\\CookieConsent\\Providers\\CookieConsentServiceProvider",
+    "author": "Source Town Creative",
+    "url": "https://source.run",
+    "version": "5.8",
+    "description": "Cookie Consent"
+}

@@ -1,0 +1,55 @@
+.button-loading {
+    border: 1px solid #c4cdd5;
+    cursor: default;
+    text-shadow: none;
+    color: transparent !important;
+    position: relative;
+    -webkit-transition: border-color .2s ease-out;
+    transition: border-color .2s ease-out;
+}
+
+.button-loading, .button-loading:hover, .button-loading:focus, .button-loading:active {
+    color: transparent
+}
+
+.button-loading:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    border-width: 3px;
+    border-style: solid;
+    margin-top: -9px;
+    margin-left: -9px;
+    width: 18px;
+    height: 18px;
+    -webkit-animation: button-loading-spinner .7s linear infinite;
+    animation: button-loading-spinner 1s linear infinite;
+    border-color: #ffffff;
+    border-bottom-color: transparent
+}
+
+.btn {
+    border-radius: .5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.button-loading {
+    &.btn-fill-out {
+        color: transparent !important;
+        border: 1px solid var(--color-1st);
+
+        &:before {
+            width: 18px;
+            background-color: transparent;
+            border-color: var(--color-1st);
+            border-bottom-color: transparent;
+        }
+
+        &:after {
+            display: none;
+        }
+    }
+}

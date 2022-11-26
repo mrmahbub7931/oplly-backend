@@ -1,0 +1,9 @@
+{
+    "name": "Blog",
+    "namespace": "Canopy\\Blog\\",
+    "provider": "Canopy\\Blog\\Providers\\BlogServiceProvider",
+    "author": "Source Town Creative",
+    "url": "https://source.run",
+    "version": "5.8",
+    "description": "Manage posts, categories, tags"
+}

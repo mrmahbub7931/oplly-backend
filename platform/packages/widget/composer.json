@@ -1,0 +1,25 @@
+{
+    "name": "canopy/widget",
+    "description": "Widget package for Canopy CMS application",
+    "type": "package",
+    "autoload": {
+        "psr-4": {
+            "Canopy\\Widget\\": "src"
+        }
+    },
+    "require": {
+        "canopy/platform": "*@dev",
+        "canopy/theme": "*@dev"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Canopy\\Widget\\Providers\\WidgetServiceProvider"
+            ],
+            "aliases": {
+                "Widget": "Canopy\\Widget\\Facades\\WidgetFacade",
+                "WidgetGroup": "Canopy\\Widget\\Facades\\WidgetGroupFacade"
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "name": "canopy/dev-tool",
+    "description": "Dev tools package for Canopy CMS application",
+    "type": "package",
+    "autoload": {
+        "psr-4": {
+            "Canopy\\DevTool\\": "src"
+        }
+    },
+    "require": {
+        "canopy/platform": "*@dev",
+        "php-parallel-lint/php-parallel-lint": "^1.0",
+        "squizlabs/php_codesniffer": "^3.3",
+        "barryvdh/laravel-debugbar": "^3.2",
+        "barryvdh/laravel-ide-helper": "^2.6",
+        "phpmd/phpmd": "^2.8",
+        "doctrine/dbal": "^2.9",
+        "canopy/git-commit-checker": "^1.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Canopy\\DevTool\\Providers\\DevToolServiceProvider"
+            ]
+        }
+    }
+}

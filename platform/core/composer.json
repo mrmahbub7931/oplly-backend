@@ -1,0 +1,85 @@
+{
+    "name": "canopy/platform",
+    "description": "The canopy Platform based on Laravel Framework.",
+    "keywords": [
+        "canopy",
+        "canopy cms",
+        "canopy platform"
+    ],
+    "homepage": "https://canopy.com",
+    "support": {
+        "issues": "https://canopy.ticksy.com",
+        "document": "https://docs.canopy.com"
+    },
+    "authors": [
+        {
+            "name": "canopy Technologies",
+            "email": "contact@canopy.com"
+        }
+    ],
+    "type": "project",
+    "require": {
+        "barryvdh/laravel-dompdf": "^0.9.0",
+        "canopy/assets": "*@dev",
+        "intervention/image": "^2.4",
+        "kris/laravel-form-builder": "1.16.x-dev",
+        "laravelcollective/html": "^6.1",
+        "ralouphie/mimey": "^2.0",
+        "tightenco/ziggy": "^1.0",
+        "yajra/laravel-datatables-buttons": "^4.9",
+        "yajra/laravel-datatables-oracle": "^9.9",
+        "guzzlehttp/guzzle": "^6.0|^7.0",
+        "mews/purifier": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Canopy\\Support\\": "support/src",
+            "Canopy\\ACL\\": "acl/src",
+            "Canopy\\Base\\": "base/src",
+            "Canopy\\Dashboard\\": "dashboard/src",
+            "Canopy\\Media\\": "media/src",
+            "Canopy\\Setting\\": "setting/src",
+            "Canopy\\Table\\": "table/src",
+            "Canopy\\JsValidation\\": "js-validation/src",
+            "Canopy\\Chart\\": "chart/src"
+        }
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://projects.source.run/janvalo/laravel-assets.git"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Canopy\\Base\\Providers\\BaseServiceProvider",
+                "Canopy\\Base\\Providers\\CommandServiceProvider",
+                "Canopy\\Base\\Providers\\EventServiceProvider",
+                "Canopy\\Base\\Providers\\BreadcrumbsServiceProvider",
+                "Canopy\\Base\\Providers\\ComposerServiceProvider",
+                "Canopy\\Base\\Providers\\MailConfigServiceProvider",
+                "Canopy\\Base\\Providers\\FormServiceProvider",
+                "Canopy\\Support\\Providers\\SupportServiceProvider",
+                "Canopy\\Table\\Providers\\TableServiceProvider",
+                "Canopy\\ACL\\Providers\\AclServiceProvider",
+                "Canopy\\Dashboard\\Providers\\DashboardServiceProvider",
+                "Canopy\\Media\\Providers\\MediaServiceProvider",
+                "Canopy\\JsValidation\\Providers\\JsValidationServiceProvider",
+                "Canopy\\Chart\\Providers\\ChartServiceProvider"
+            ],
+            "aliases": {
+                "Assets": "Canopy\\Base\\Facades\\AssetsFacade",
+                "BaseHelper": "Canopy\\Base\\Facades\\BaseHelperFacade",
+                "MetaBox": "Canopy\\Base\\Facades\\MetaBoxFacade",
+                "Action": "Canopy\\Base\\Facades\\ActionFacade",
+                "Filter": "Canopy\\Base\\Facades\\FilterFacade",
+                "EmailHandler": "Canopy\\Base\\Facades\\EmailHandlerFacade",
+                "Breadcrumbs": "Canopy\\Base\\Facades\\BreadcrumbsFacade",
+                "JsValidator": "Canopy\\JsValidation\\Facades\\JsValidatorFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

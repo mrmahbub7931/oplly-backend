@@ -1,0 +1,9 @@
+{
+    "name": "Audit Log",
+    "namespace": "Canopy\\AuditLog\\",
+    "provider": "Canopy\\AuditLog\\Providers\\AuditLogServiceProvider",
+    "author": "Source Town Creative",
+    "url": "https://source.run",
+    "version": "5.8",
+    "description": "Record activities logs"
+}

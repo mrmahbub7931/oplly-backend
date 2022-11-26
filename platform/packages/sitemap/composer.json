@@ -1,0 +1,20 @@
+{
+    "name": "canopy/sitemap",
+    "description": "Sitemap package for Laravel.",
+    "license": "MIT",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Canopy\\Sitemap\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Canopy\\Sitemap\\Providers\\SitemapServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

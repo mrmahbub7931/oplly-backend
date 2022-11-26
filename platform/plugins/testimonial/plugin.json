@@ -1,0 +1,9 @@
+{
+    "name": "Testimonial",
+    "namespace": "Canopy\\Testimonial\\",
+    "provider": "Canopy\\Testimonial\\Providers\\TestimonialServiceProvider",
+    "author": "Source Town Creative",
+    "url": "https://source.run",
+    "version": "5.8",
+    "description": "Customer testimonials"
+}

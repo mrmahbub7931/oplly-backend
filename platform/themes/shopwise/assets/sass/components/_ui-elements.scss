@@ -1,0 +1,168 @@
+/**
+Styling for the service selector of Talent detail page
+ */
+.service-selector {
+    &-list {
+        margin: 0 1rem;
+    }
+    &-icon {
+        color: $secondary-color;
+        vertical-align: center;
+        height: 2rem;
+        width: 2rem;
+        border: 1px solid #6c757d;
+        border-radius: 2rem;
+        margin: .5rem 1rem .5rem .5rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+    &-item {
+        background-color: $bg-secondary;
+        border-width: 2px solid $bg-secondary;
+        color: #fff;
+        width: 100%;
+        margin: .5rem 0;
+        padding: .8rem 1rem;
+        border-radius: $default-corner-rounding;
+        font-size: 1rem;
+        vertical-align: center;
+        transition: all 0.3s ease;
+    }
+
+    &-amount {
+        padding: 0 1rem;
+        text-align: right;
+        vertical-align: center;
+        font-weight: 700;
+    }
+
+    &-list .service-selector-title {
+        font-weight: 700;
+        text-align: left;
+        vertical-align: center;
+    }
+
+    &-item.selected {
+        border: 2px solid $primary-color;
+        transition: all 0.3s ease;
+        .service-selector-icon {
+            border-color: $primary-color;
+            background-color: $primary-color;
+            transition: all 0.3s ease;
+        }
+    }
+}
+
+/**
+ Styling for the details section of customer requests detail page
+ */
+.request-detail {
+    &-list {
+        margin: .5rem 1rem;
+    }
+
+    &-line {
+        padding: .8rem 1.6rem;
+        background-color: $bg-secondary;
+        width: 100%;
+        border-radius: $default-corner-rounding;
+        margin: .3rem 0;
+    }
+
+    &-value {
+        color: var(--op-ui-text-accent-color);
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+    &-label {
+        width: 100%;
+        text-align: left;
+        color: var(--op-ui-text-default-color);
+    }
+
+    &-item {
+        &-header {
+            border: 3px solid $bg-secondary;
+            border-radius: $default-corner-rounding;
+            padding: 1rem;
+            margin: .5rem 1rem;
+        }
+
+        &-subtitle {
+            font-size: 90%;
+            margin-top: .5rem;
+        }
+
+        &-title {
+            font-weight: 700;
+            color: var(--op-ui-text-accent-color);
+        }
+
+        &-image {
+            background-color: $bg-secondary;
+            width: 4.5rem;
+            height: 4.5rem;
+            margin-right: .5rem;
+        }
+    }
+}
+
+
+.product-header-slider-item {
+    border-radius: var(--op-ui-default-corner-rounding);
+    overflow: hidden;
+    background: var(--op-ui-secondary-bg-color);
+    text-align: center;
+    height: 460px;
+}
+
+.product-header-slider {
+    .slick-slide {
+        padding: 5px;
+        position: relative;
+        height: 100%;
+        flex: auto;
+    }
+
+    .slick-track {
+        display: flex;
+    }
+
+    a.product_gallery_item {
+        padding-bottom: 130%;
+        height: 0;
+        background-color: var(--op-ui-secondary-bg-color);
+        overflow: hidden;
+        border-radius: var(--op-ui-default-corner-rounding);
+        text-align: center;
+        display: flex;
+        position: relative;
+        > div {
+            justify-content: center;
+            padding: 0 1rem;
+            align-self: center;
+            top: 0;
+            left: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            bottom: 0;
+            position: absolute;
+        }
+    }
+
+    img {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+    }
+}
+
+.follow-section i {
+    font-size: 2rem;
+    margin: 1rem;
+    color: var(--op-ui-text-default-color);
+}

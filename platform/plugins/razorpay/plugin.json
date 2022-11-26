@@ -1,0 +1,10 @@
+{
+    "name": "Razorpay Payment Gateway",
+    "namespace": "Canopy\\Razorpay\\",
+    "provider": "Canopy\\Razorpay\\Providers\\RazorpayServiceProvider",
+    "author": "Source Town Creative",
+    "url": "https://source.run",
+    "version": "1.0",
+    "description": "Razorpay payment gateway integration",
+    "require": []
+}

@@ -1,0 +1,37 @@
+:root {
+    --op-ui-primary-color: #FF00B2;
+    --op-ui-primary-active-color: #d6149c;
+    --op-ui-secondary-color: #050510;
+    --op-ui-secondary-active-color: #14141e;
+    --op-ui-text-default-color: #6c757d;
+    --op-ui-text-accent-color: #ffffff;
+    --op-ui-muted-color: #6c757d;
+    --op-ui-primary-bg-color: #050510;
+    --op-ui-secondary-bg-color: #14141e;
+    --op-ui-icon-color: #ffffff;
+    --op-ui-icon-active-color: #ff00b2;
+    --op-ui-success-color: #00ff73;
+    --op-ui-yellow-color: #ffd500;
+    --op-ui-danger-color: #ff0060;
+    --op-ui-pending-color: #6c757d;
+    --op-ui-dark-overlay-color: #000;
+
+    --op-ui-default-corner-rounding: 1rem;
+    --op-ui-primary-font: 'Lato', sans-serif;
+}
+$primary-font: var(--op-ui-primary-font), sans-serif;
+$dark: var(--op-ui-secondary-bg-color);
+$primary-color: var(--op-ui-primary-color, #FF00B2);
+$primary-color-active: var(--op-ui-primary-active-color, #d6149c);
+$secondary-color: var(--op-ui-secondary-active-color, #050510);
+$secondary-color-active: var(--op-ui-secondary-active-color, #14141e);
+
+$bg-primary: var(--op-ui-secondary-active-color, #050510);
+$bg-secondary: var(--op-ui-secondary-active-color, #14141e);
+
+$color-yellow: var(--op-ui-yellow-color, #ffd500);
+$color-success: var(--op-ui-success-color, #00ff73);
+$color-danger: var(--op-ui-danger-color, #ff0060);
+$color-pending: var(--op-ui-pending-color, #6c757d);
+
+$default-corner-rounding: var(--op-ui-default-corner-rounding, 1rem);

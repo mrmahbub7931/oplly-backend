@@ -1,0 +1,9 @@
+{
+    "name": "Mobile App Config",
+    "namespace": "Canopy\\MobileApp\\",
+    "provider": "Canopy\\MobileApp\\Providers\\MobileAppServiceProvider",
+    "author": "Oplly App Ltd",
+    "url": "https://oplly.com",
+    "version": "1.0.1",
+    "description": "MobileApp"
+}

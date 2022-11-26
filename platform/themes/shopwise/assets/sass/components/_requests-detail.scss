@@ -1,0 +1,104 @@
+.request--details .col-12 {
+    display: flex;
+}
+
+.request--details .col-12 span {
+    flex: 1;
+}
+.request--details .col-12 span:first-child {
+    font-size: 90%;
+    margin-bottom: .5rem;
+}
+
+.request--details .col-12 span:last-child {
+    text-align: right;
+}
+
+
+
+.request--details .col-12 span.order-detail-value {
+    color: #fff;
+}
+.customer-order-detail .col-md-6 > .inner {
+    padding: 1rem 0;
+    border-radius: .3rem;
+}
+
+.request--details > div {
+    background: var(--op-ui-secondary-bg-color);
+    margin: 0 0 .5rem;
+    border-radius: .5rem;
+    padding: .8rem 1rem;
+    line-height: 1;
+}
+
+.request--details span {
+    margin: 0!important;
+}
+
+.request--details .col-12 span {
+    text-align:left!important
+}
+
+.request--details .col-12 span:first-child {
+    font-size: 90%;
+    margin-bottom: 0.5rem;
+    max-width: 160px;
+    flex: auto;
+}
+
+.upload--video--section {
+    background: var(--op-ui-secondary-bg-color);
+    border-radius: var(--op-ui-default-corner-rounding);
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.requests-list--item {
+    background: var(--op-ui-secondary-bg-color);
+    margin-bottom: 0.5rem;
+    padding: 1rem 1.5rem;
+    display: flex;
+    width: 100%;
+    flex: 0 0 auto;
+    align-items: center;
+    border-radius: var(--op-ui-default-corner-rounding);
+}
+
+.requests-list--action {width: 100px;text-align: right;}
+
+.requests-list--info {min-width: 45%;flex: auto;}
+
+.requests-list--status-info .status-label {
+    background: #050510;
+    text-align: center;
+    padding: 0.3rem 1rem;
+    text-transform: capitalize;
+    font-size: 85%;
+    border-radius: 1rem;
+    white-space: nowrap;
+}
+
+.requests-list--image {width: 3rem;height: 3rem;margin: 0 1rem 0 0;}
+
+.requests-list--image img {border-radius: 3rem;background: #050510;width: 3rem;
+    height: 3rem;}
+
+.requests-list--price {margin-right: 1rem;font-size: 110%;color: var(--op-ui-muted-color);}
+
+
+.talent-card {border-radius: var(--op-ui-default-corner-rounding);border: 3px solid var(--op-ui-secondary-active-color);padding: .8rem 1rem;display: flex;align-items: center;flex: 0 0 auto;width: 100%;}
+
+.talent-card--image {width: 3rem;height: 3rem;margin-right: 1rem !important;}
+
+.talent-card--image img {width: inherit;height: inherit;border-radius: 50%;}
+
+.talent-card--action {display: flex;flex: auto;justify-content: end;}
+
+
+.talent-card--title {margin: 0 1rem 0 0 !important;font-size: 1.2rem;color: var(--op-ui-muted-color);}
+
+.talent-card--title strong {color: var(--op-ui-text-accent-color);}

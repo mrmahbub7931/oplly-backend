@@ -1,0 +1,10 @@
+{
+    "name": "Paystack Payment Gateway",
+    "namespace": "Canopy\\Paystack\\",
+    "provider": "Canopy\\Paystack\\Providers\\PaystackServiceProvider",
+    "author": "Source Town Creative",
+    "url": "https://source.run",
+    "version": "1.0",
+    "description": "Paystack payment gateway integration",
+    "require": []
+}

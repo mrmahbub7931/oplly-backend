@@ -1,0 +1,10 @@
+{
+    "name": "Bkash Payment Gateway",
+    "namespace": "Canopy\\Bkash\\",
+    "provider": "Canopy\\Bkash\\Providers\\BkashServiceProvider",
+    "author": "Source Town Creative",
+    "url": "https://source.run",
+    "version": "1.0",
+    "description": "Bkash payment gateway integration",
+    "require": []
+}

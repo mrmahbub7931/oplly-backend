@@ -1,0 +1,9 @@
+{
+    "name": "Simple Slider",
+    "namespace": "Canopy\\SimpleSlider\\",
+    "provider": "Canopy\\SimpleSlider\\Providers\\SimpleSliderServiceProvider",
+    "author": "Source Town Creative",
+    "url": "https://source.run",
+    "version": "5.8",
+    "description": "A plugin to create sliders"
+}

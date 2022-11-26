@@ -1,0 +1,9 @@
+{
+    "name": "Captcha",
+    "namespace": "Canopy\\Captcha\\",
+    "provider": "Canopy\\Captcha\\Providers\\CaptchaServiceProvider",
+    "author": "Source Town Creative",
+    "url": "https://source.run",
+    "version": "5.8",
+    "description": "Captcha for higher security"
+}

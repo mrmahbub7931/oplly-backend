@@ -1,0 +1,34 @@
+<?php
+
+namespace Canopy\{Module}\Models;
+
+use Canopy\Base\Traits\EnumCastable;
+use Canopy\Base\Enums\BaseStatusEnum;
+use Canopy\Base\Models\BaseModel;
+
+class {Name} extends BaseModel
+{
+    use EnumCastable;
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = '{names}';
+
+    /**
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'status',
+    ];
+
+    /**
+     * @var array
+     */
+    protected $casts = [
+        'status' => BaseStatusEnum::class,
+    ];
+}

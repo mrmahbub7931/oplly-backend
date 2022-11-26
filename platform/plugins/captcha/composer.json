@@ -1,0 +1,8 @@
+{
+    "name": "canopy/captcha",
+    "description": "Captcha for higher security",
+    "homepage": "https://source.run",
+    "require": {
+        "google/recaptcha": "^1.2"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "name": "canopy/razorpay",
+    "description": "Razorpay",
+    "type": "package",
+    "require": {
+        "razorpay/razorpay": "^2.3"
+    }
+}

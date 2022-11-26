@@ -1,0 +1,92 @@
+// form stuff
+.form-control {
+    color: var(--op-ui-primary-bg-color);
+    box-shadow: none;
+    height: 50px;
+    padding: .8rem 1.6rem;
+    border-radius: .5rem;
+    background-color: var(--op-ui-secondary-bg-color);
+}
+
+.form-control::placeholder {
+    color: var(--op-ui-muted-color);
+}
+
+.form-group.nice--input {
+    position: relative;
+}
+
+.form-group.nice--input input {
+    border: 3px solid var(--op-ui-secondary-active-color);
+}
+
+.form-group.nice--input label {
+    position: absolute;
+    left: 22px;
+    top: 10px;
+    padding: 4px 10px;
+    margin: 0;
+    border-radius: 20px;
+    transition: all .3s ease;
+}
+
+.form-group.nice--input.filled label {
+    top: -14px;
+    color: #00ffdc;
+    background-color: var(--op-ui-primary-bg-color);
+    transition: all .3s ease;
+}
+
+.form-group.nice--input textarea {
+    background-color: var(--op-ui-secondary-bg-color);
+}
+
+.form-group.nice--input textarea,
+.form-group.nice--input textarea:focus {
+    background: var(--op-ui-secondary-bg-color) !important;
+    border-width: 3px;
+    transition: all 0.3s ease;
+    border-color: var(--op-ui-secondary-bg-color);
+}
+
+span.char-limit {
+    position: absolute;
+    right: 8px;
+    font-size: 90%;
+    opacity: .4;
+}
+
+.form-group.nice--input textarea,
+.form-group.nice--input textarea:focus {
+    border-width: 3px;
+    transition: all .3s ease;
+}
+
+.form-group.nice--input.filled input,
+.form-group.nice--input input:focus,
+.form-group.nice--input.filled textarea,
+.form-group.nice--input.filled textarea:focus {
+    background: var(--op-ui-primary-bg-color) !important;
+    border-color: #00ffdc;
+    color: #fff !important;
+    transition: all .3s ease;
+}
+
+select.form-control:focus {
+    background-color: #050510;
+    border-color: #00ffdc;
+    outline: 0;
+    border-width: 3px;
+}
+
+.form-control option {
+    color: #ffffff;
+    padding: 0.5rem 0;
+}
+
+select.form-control {
+    border-color: var(--op-ui-secondary-bg-color);
+}
+form.row.form-review-product {
+    max-width: 100%;
+}

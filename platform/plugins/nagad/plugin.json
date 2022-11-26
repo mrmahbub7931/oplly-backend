@@ -1,0 +1,10 @@
+{
+    "name": "Nagad Payment Gateway",
+    "namespace": "Canopy\\Nagad\\",
+    "provider": "Canopy\\Nagad\\Providers\\NagadServiceProvider",
+    "author": "Source Town Creative",
+    "url": "https://source.run",
+    "version": "1.0",
+    "description": "Nagad payment gateway integration",
+    "require": []
+}

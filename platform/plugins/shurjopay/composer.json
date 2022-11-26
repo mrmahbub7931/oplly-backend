@@ -1,0 +1,8 @@
+{
+    "name": "canopy/shurjopay",
+    "description": "ShurjoPay",
+    "type": "package",
+    "require": {
+        "sowrensen/laravel-shurjopay": "*"
+    }
+}

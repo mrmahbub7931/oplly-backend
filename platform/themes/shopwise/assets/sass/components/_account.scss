@@ -1,0 +1,100 @@
+.dashboard_menu {
+    margin-top: 0;
+    box-shadow: none;
+    margin-bottom: 1rem;
+}
+
+.dashboard_menu .nav-tabs li.nav-item a {
+    text-align: left;
+    padding: 12px 20px;
+    border-radius: 0;
+    color: #ccc;
+}
+
+.dashboard_menu li.nav-item {
+    color: #fff!important;
+    margin: 0!important;
+}
+.dashboard_content .card form {
+    max-width: 500px;
+    margin: auto;
+}
+.dashboard_menu ul.nav {
+    justify-content: center;
+    padding: 0;
+    border: none;
+    padding: 0!important;
+}
+
+.dashboard_menu .nav-tabs li.nav-item a.active {
+    background-color: var(--op-ui-secondary-bg-color);
+    color: $primary-color;
+}
+
+.dashboard_menu .nav-tabs li.nav-item a i {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.dashboard_content {
+    margin: 0;
+}
+.account--section {
+    margin-top: 3rem;
+    padding: 0;
+}
+
+.dashboard_menu ul.nav {
+    padding: 0!important;
+}
+.dashboard_content .card-header {
+    background-color: transparent;
+    border-color: transparent;
+}
+.dashboard_content .card-header h3 {
+    text-align: center;
+    font-size: 1.4rem;
+    margin: 1rem 0;
+    color: #ccc;
+}
+.dashboard_content .card-header * {
+    margin: 0;
+}
+.table {
+
+    color: #c4c4c4;
+}
+.dashboard_content .card {
+    border-radius: .5rem;
+    border: 0;
+    // box-shadow: 0 0 4px 0 #111;
+    min-height: 55vh;
+    background-color: transparent;
+}
+
+.dashboard_content .card-body p:last-child {
+    margin: 0;
+}
+
+.dashboard_content .table {
+    margin: 0;
+}
+
+.dashboard_content .table thead th {
+    border: 0;
+    padding-top: 0;
+    font-weight: 600;
+}
+
+.dashboard_content .table tbody tr:last-child td {
+    padding-bottom: 0;
+}
+
+.dashboard_content .table tbody tr td {
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.dashboard_content label .required {
+    color: #ff0000;
+}

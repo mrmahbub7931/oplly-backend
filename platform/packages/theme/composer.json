@@ -1,0 +1,32 @@
+{
+    "name": "canopy/theme",
+    "description": "Theme package for Canopy CMS application",
+    "type": "package",
+    "autoload": {
+        "psr-4": {
+            "Canopy\\Theme\\": "src"
+        }
+    },
+    "require": {
+        "canopy/platform": "*@dev",
+        "canopy/sitemap": "*@dev",
+        "canopy/widget": "*@dev",
+        "canopy/slug": "*@dev",
+        "canopy/seo-helper": "*@dev"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Canopy\\Theme\\Providers\\ThemeServiceProvider",
+                "Canopy\\Theme\\Providers\\RouteServiceProvider"
+            ],
+            "aliases": {
+                "Theme": "Canopy\\Theme\\Facades\\ThemeFacade",
+                "ThemeOption": "Canopy\\Theme\\Facades\\ThemeOptionFacade",
+                "ThemeManager": "Canopy\\Theme\\Facades\\ManagerFacade",
+                "AdminBar": "Canopy\\Theme\\Facades\\AdminBarFacade",
+                "SiteMapManager": "Canopy\\Theme\\Facades\\SiteMapManagerFacade"
+            }
+        }
+    }
+}

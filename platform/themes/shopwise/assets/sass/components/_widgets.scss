@@ -1,0 +1,117 @@
+.widget_title {
+    margin-bottom: 1.5rem;
+    text-transform: capitalize;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    font-size: 1rem;
+    color: var(--op-ui-muted-color);
+}
+
+.widget_categories li,
+.widget_archive li {
+    padding-bottom: 10px;
+    list-style: none;
+}
+
+.widget_categories li a,
+.widget_archive li a {
+    position: relative;
+    color: var(--op-ui-muted-color);
+}
+
+.widget_categories li a::before,
+.widget_archive li a:before {
+    content: "\f3d1";
+    font-family: "Ionicons";
+    height: auto;
+    line-height: normal;
+    margin-right: 10px;
+}
+
+.widget_categories li:last-child,
+.widget_archive li:last-child {
+    padding-bottom: 0;
+}
+
+.widget_categories .categories_num,
+.widget_archive .archive_num {
+    float: right;
+    font-size: 14px;
+}
+
+.sidebar .widget + .widget {
+    border-top: 1px solid var(--op-ui-primary-bg-color);
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+
+.widget_newsletter p {
+    font-size: 14px;
+    line-height: normal;
+}
+
+.widget_newsletter button {
+    padding: 5px 12px;
+}
+
+.widget_newsletter button i, .widget_newsletter .btn i {
+    font-size: 18px;
+}
+
+.widget_recent_post li,
+.widget_course li {
+    list-style: none;
+    margin-bottom: 15px;
+    width: 100%;
+    display: inline-block;
+}
+
+.widget_course li {
+    display: table;
+}
+
+.post_footer {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.widget_recent_post li:last-child,
+.widget_course li:last-child {
+    margin-bottom: 0;
+}
+
+footer .widget_recent_post .post_img img {
+    border: 0;
+}
+
+.post_img,
+.widget_course li .course_img {
+    float: left;
+    margin-right: 10px;
+}
+
+
+form .sidebar {
+    max-width: 90%;
+    background: var(--op-ui-secondary-bg-color);
+    padding: 1.4rem;
+    border-radius: var(--op-ui-default-corner-rounding);
+}
+
+.widget_categories li a:before {
+    content: '';
+    margin: 0;
+}
+
+ul.widget_categories li {
+    font-size: .9rem;
+    margin: 0 0 0.3rem !important;
+}
+
+.widget_categories li:hover a {
+    color: #fff;
+}
+.widget_categories li.active a {
+    color: #fff;
+    font-weight: 600;
+}

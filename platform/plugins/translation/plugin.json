@@ -1,0 +1,9 @@
+{
+    "name": "Translation",
+    "namespace": "Canopy\\Translation\\",
+    "provider": "Canopy\\Translation\\Providers\\TranslationServiceProvider",
+    "author": "Source Town Creative",
+    "url": "https://source.run",
+    "version": "5.8",
+    "description": "Manage translation text"
+}

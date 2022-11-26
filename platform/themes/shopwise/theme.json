@@ -1,0 +1,8 @@
+{
+    "name": "Opply",
+    "namespace": "Theme\\Shopwise\\",
+    "description": "Opply theme",
+    "author": "Source Town Creative",
+    "version": "0.7",
+    "required_plugins": []
+}
