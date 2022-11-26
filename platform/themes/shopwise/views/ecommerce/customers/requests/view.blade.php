@@ -113,7 +113,7 @@
               <div class="row mb-4">
 
 
-                      @if ($order->status == 'accepted' and $order->video)
+                      @if ($order->status == 'processing' || $order->status == 'accepted' and $order->video)
                       <div class="col-12">
                           <a href="{{ route('talent.requests.release', $order->id) }}"
                              class="btn btn-primary btn-block">{{ __('Release') }}</a>
@@ -142,7 +142,7 @@
               </div>
             <div class="upload--video--section">
               <div class="card-body">
-                  @if($order->status == 'accepted')
+                  @if($order->status == 'accepted' || $order->status == 'processing')
                     @if (!$order->video)
                         <div class="p-2">
                             <div class="h4 text-center">Upload your video here</div>

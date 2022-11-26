@@ -27,10 +27,10 @@ class OrderAdminManagement {
             });
         });
 
-        // Filepond setup
+       /* The above code is using FilePond to upload a video file to the server. */
         const fileInputElement = document.querySelector('input[id="order_video"]');
         const videoUploadUrl = document.querySelector('input[id="video_upload_url"]').value;
-        const pond = FilePond.create(fileInputElement);
+        FilePond.create(fileInputElement);
         FilePond.parse(document.body);
         FilePond.setOptions({
             server: {
@@ -44,16 +44,10 @@ class OrderAdminManagement {
                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     onload: function(response) {
-                        console.log(response);
                         Canopy.showSuccess(response.message);
-                        // alert(response);
-                        // location.reload();
                     },
                     onerror: function(response) {
-                        console.log(response);
                         Canopy.showSuccess(response.message);
-                        // alert(response);
-                        // location.reload();
                     },
                 },
             }

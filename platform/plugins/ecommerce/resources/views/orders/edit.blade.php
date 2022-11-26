@@ -434,10 +434,10 @@
                 </div>
               </div>
 
-              <div class="video-create-wrap @if ($order->status != \Canopy\Ecommerce\Enums\OrderStatusEnum::ACCEPTED && $order->status != 'completed' || $order->video == '') hidden @endif">
+              <div class="video-create-wrap @if ($order->status != \Canopy\Ecommerce\Enums\OrderStatusEnum::PROCESSING && $order->status != 'completed' || $order->video == '') hidden @endif">
                 <div class="final--video mx-auto text-center">
+                  {{-- {{ dd($order->video) }} --}}
                   <video width="480" height="640" controls="">
-                    {{-- $order->video.'.mp4' --}}
                     <source src="{{ RvMedia::getImageUrl($order->video, null, false) }}" type="video/mp4">
                     Your browser does not support the video tag.
                   </video>

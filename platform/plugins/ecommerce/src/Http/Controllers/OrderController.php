@@ -3,7 +3,7 @@
 namespace Canopy\Ecommerce\Http\Controllers;
 
 use Assets;
-use File;
+
 use RvMedia;
 use Exception;
 use Throwable;
@@ -13,15 +13,12 @@ use Illuminate\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use FFMpeg\Format\Video\X264;
-use FFMpeg\Coordinate\TimeCode;
-use FFMpeg\Coordinate\Dimension;
+use Illuminate\Support\Facades\File;
 use Canopy\Ecommerce\FFmpeg\FFmpeg;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\Factory;
 use Canopy\Ecommerce\Tables\OrderTable;
 use Illuminate\Support\Facades\Storage;
-use Canopy\Ecommerce\Watermark\Watermark;
 use Canopy\Base\Events\DeletedContentEvent;
 use Canopy\Base\Events\UpdatedContentEvent;
 use Canopy\Ecommerce\Enums\OrderStatusEnum;
@@ -438,24 +435,30 @@ class OrderController extends BaseController
      * @return BaseHttpResponse
      * @throws Throwable
      */
-    public function uploadOrderVideo(Request $request,$orderID, BaseHttpResponse $response)
+    public function uploadOrderVideo(Request $request,$orderID, BaseHttpResponse $response) : BaseHttpResponse
     {
         $order = $this->orderRepository->findOrFail($orderID);
+        /* The above code is using the FFmpeg class to add a watermark to the video file. */
         if($request->hasFile('order_video')){
+            /* Setting the path to the watermark image. */
             $watermarkpath = base_path() . '/public/storage/logo/wm.png';
-
             $file =  $request->file('order_video');
-            // return $file;
+            /* Creating a unique name for the file. */
             $filename = time().rand(100,999) . strtolower(trim($file->getClientOriginalExtension()));
-            // shell_exec('ffmpeg -i '.$file.' -vf "movie='.$watermarkpath.' [watermark]; [watermark]scale=-2:100 [watermark2];[in][watermark2] overlay=main_w-overlay_w-20:main_h-overlay_h-20 [out]" '.base_path() . '/public/storage/orders/'.$filename.'.mp4');
+            /* Creating a new instance of the FFmpeg class and passing the file, watermarkpath,
+            filename and watermark size. */
             $ffmpeg = new FFmpeg($file,$watermarkpath,$filename,80);
             $ffmpeg->runcmd();
-            // $result = RvMedia::handleUpload($request->file('order_video'), 0, 'orders');
-            // return $result['data'];
-            $order->video = 'orders/'.$filename.'.mp4';
-            $order->update();
-            
-            // // File::delete(base_path() . '/public/storage/'.$order->video.'.mp4');
+
+            /* Uploading the video to the server. */
+            if (File::exists(base_path() . '/public/storage/orders/'.$filename.'.mp4')) {
+                /* Uploading the video to the server s3. */
+                $result = RvMedia::uploadFromUrl(base_path() . '/public/storage/orders/'.$filename.'.mp4', 0, 'orders');
+                $order->video = $result['data']->url;
+                $order->update();
+                /* Deleting the video file from the storage folder. */
+                File::delete(base_path() . '/public/storage/'.$order->video);
+            }
             return $response->setMessage('Video File exported!');
         }else{
             return "nothing";
