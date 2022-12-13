@@ -71,6 +71,7 @@ return [
     'payment_was_confirmed_by'                  => 'Payment was confirmed (amount :money) by %user_name%',
     'edit_order'                                => 'Edit order :code',
     'confirm_order_success'                     => 'Confirm order successfully!',
+    'note_saved'                                => 'Notes saved successfully!',
     'error_when_sending_email'                  => 'There is an error when sending email',
     'sent_confirmation_email_success'           => 'Sent confirmation email successfully!',
     'order_was_sent_to_shipping_team'           => 'Order was sent to shipping team',

@@ -87,6 +87,7 @@ class WishlistController extends Controller
      */
     public function follow($productId)
     {
+
         $product = $this->productRepository->findOrFail($productId);
 
         if (!auth('customer')->check()) {

@@ -41,6 +41,12 @@ Route::group(['namespace' => 'Canopy\Ecommerce\Http\Controllers', 'middleware' =
                 'permission' => 'orders.edit',
             ]);
 
+            Route::post('notes', [
+                'as'         => 'notes',
+                'uses'       => 'OrderController@postNotes',
+                'permission' => 'orders.edit',
+            ]);
+
             Route::post('send-order-confirmation-email/{id}', [
                 'as'         => 'send-order-confirmation-email',
                 'uses'       => 'OrderController@postResendOrderConfirmationEmail',
@@ -170,4 +176,11 @@ Route::group(['namespace' => 'Canopy\Ecommerce\Http\Controllers\Fronts', 'middle
             ]);
         });
     });
+});
+
+Route::group(['namespace' => 'Canopy\Ecommerce\Http\Controllers\Fronts', 'middleware' => ['web','api', 'core']],function(){
+    Route::get('occasion',[
+        'as'   => 'occasion',
+        'uses' => 'PublicCheckoutController@getOccasion',
+    ]);
 });

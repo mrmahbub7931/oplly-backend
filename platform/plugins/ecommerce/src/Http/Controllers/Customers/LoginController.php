@@ -13,9 +13,11 @@ use Canopy\Ecommerce\Models\Customer;
 use Illuminate\Http\RedirectResponse;
 use Canopy\ACL\Traits\LogoutGuardTrait;
 use Canopy\ACL\Traits\AuthenticatesUsers;
+use Canopy\Ecommerce\Models\CustomerTalentHistory;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
+use Canopy\Ecommerce\Repositories\Interfaces\TalentInterface;
 use Canopy\Ecommerce\Repositories\Interfaces\CustomerInterface;
 
 class LoginController extends Controller
@@ -46,12 +48,18 @@ class LoginController extends Controller
     protected $customerRepository;
 
     /**
+     * @var TalentInterface
+     */
+    protected $talentRepository;
+
+    /**
      * Create a new controller instance.
      * @param CustomerInterface $customerRepository
      */
-    public function __construct(CustomerInterface $customerInterface)
+    public function __construct(CustomerInterface $customerInterface, TalentInterface $talentInterface)
     {
         $this->customerRepository = $customerInterface;
+        $this->talentRepository = $talentInterface;
         $this->middleware('customer.guest', ['except' => 'logout']);
 
         session(['url.intended' => URL::previous()]);
@@ -105,6 +113,17 @@ class LoginController extends Controller
             $customer = Customer::where('email',$request->input('email'))->first();
             $customer->last_login_at = Carbon::now();
             $customer->save();
+            $ctHistory = new CustomerTalentHistory();
+            $ctHistory->action = 'logged_in';
+            $ctHistory->description =  $customer->name . ' logged in at '. Carbon::parse($customer->last_login_at)->toDateTimeString();
+            $ctHistory->customer_id = $customer->id;
+            $talent = $this->talentRepository->getModel()->where('id',$customer->talent_id)->first();
+
+            if ($talent) {
+                $ctHistory->talent_id = $talent->id;
+            }
+            $ctHistory->save();
+
             $input = $request->input();
             if (isset($input['redirect'])) {
                 $this->redirectTo = url($input['redirect']);

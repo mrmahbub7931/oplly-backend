@@ -1643,19 +1643,34 @@ ul.list-group.list_occasion--selector {
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 ul.list-group.list_occasion--selector li {
     padding: 0.5rem;
-    min-width: 100px;
-    width: 100%;
+    min-width: 380px;
+    width: auto;
     flex: 0 0 25%;
 }
 
 ul.list-group.list_occasion--selector li label {
     padding: 0.3rem!important;
     width: 100%!important;
+    text-transform:none; 
+    text-align:left;
+}
+
+ul.list-group.list_occasion--selector li .occasion-section {
+    padding: 0.3rem!important;
+    max-width: 380px;
+    margin: 0 auto;
+    border: 2px solid rgb(96, 95, 95);
+    border-radius: 5px;
+}
+
+ul.list-group.list_occasion--selector li .occasion-section .occasion-content {
+    display: flex;
+    justify-content: left;
 }
 
 .list_occasion--selector li img {
@@ -1671,6 +1686,14 @@ ul.list-group.list_occasion--selector li label {
     margin: auto;
 }
 
+.list_occasion--selector li i {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    color: #fff;
+    margin: auto;
+}
+
 .list_occasion--selector li input {
     display: none;
 }
@@ -1680,13 +1703,19 @@ ul.list-group.list_occasion--selector li label {
     display: block;
     text-transform: initial;
     white-space: nowrap;
-    color: #fff;
+    color: #6c757d !important;
+}
+
+.list_occasion--selector li input:checked + .occasion-section {
+    background: transparent;
+    border-color: #00ffdc;
 }
 
 .list_occasion--selector li input:checked + img {
     background: transparent;
     border-color: #00ffdc;
 }
+
 .login_wrap form {
     max-width: 480px;
     margin: auto;

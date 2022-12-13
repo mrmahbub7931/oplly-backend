@@ -1,7 +1,7 @@
 <?php
 
 Route::group([
-    'middleware' => ['web', 'api'],
+    'middleware' => ['api'],
     'prefix'     => 'api/v1',
     'namespace'  => 'Canopy\Ecommerce\Http\Controllers\API',
 ], function () {
@@ -9,8 +9,8 @@ Route::group([
     Route::post('register', 'CustomerController@store');
     Route::post('talent-register', 'TalentController@store');
 
-    Route::get('search/{keyword}', 'TalentController@search')->name('api.search');
-    Route::get('search/recommended', 'TalentController@search');
+    Route::get('search/{keyword}', 'TalentController@search')->name('api.search')->middleware('web');
+    Route::get('search/recommended', 'TalentController@search')->middleware('web');
 
     Route::get('requests', 'TalentRequestController@index');
     Route::get('requests/{id}', 'TalentRequestController@get');
@@ -32,6 +32,15 @@ Route::group([
     // Route::post('talents/{id}/availability', 'TalentController@updateBookingAvailability');
     Route::post('talents/notify-when-back', 'TalentController@postNotifyWhenBack')->name('api.notify-when-back');
     // Route::get('general/booking-slots', 'TalentController@getBookingAvailabilitySlots');
+
+    /**
+     * FOLLOW::STARTS
+     */
+    Route::get('talents/{productId}/likes', 'TalentController@talent_likes'); // productId and talentId is different
+    Route::post('talents/{productId}/insert/likes', 'TalentController@talent_likes_store')->middleware('api-customer'); // productId and talentId is different
+    /**
+     * FOLLOW::ENDS
+     */
 
     Route::get('customers/{id}', 'CustomerController@get');
     Route::post('customers/{id}', 'CustomerController@update');

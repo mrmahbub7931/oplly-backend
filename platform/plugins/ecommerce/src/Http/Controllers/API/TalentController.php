@@ -2,43 +2,45 @@
 
 namespace Canopy\Ecommerce\Http\Controllers\API;
 
-use Canopy\Base\Enums\BaseStatusEnum;
-use Canopy\Base\Events\CreatedContentEvent;
-use Canopy\Base\Http\Responses\BaseHttpResponse;
-use Canopy\Blog\Repositories\Interfaces\CategoryInterface;
-use Canopy\Ecommerce\Enums\OrderStatusEnum;
-use Canopy\Ecommerce\Http\Requests\EditAccountRequest;
-use Canopy\Ecommerce\Http\Requests\TalentCreateRequest;
-use Canopy\Ecommerce\Http\Resources\ListTalentResource;
-use Canopy\Ecommerce\Http\Resources\ListTalentSearchResultsResource;
-use Canopy\Ecommerce\Http\Resources\CustomerOrderHistoryResource;
-use Canopy\Ecommerce\Http\Resources\TalentResource;
-use Canopy\Ecommerce\Models\NotifyWhenBack;
-use Canopy\Ecommerce\Models\Product;
-use Canopy\Ecommerce\Repositories\Interfaces\ReviewInterface;
-use Canopy\Ecommerce\Repositories\Interfaces\WishlistInterface;
-use Canopy\Ecommerce\Repositories\Interfaces\TalentInterface;
-use Canopy\Ecommerce\Repositories\Interfaces\CustomerInterface;
-use Canopy\Ecommerce\Repositories\Interfaces\OrderHistoryInterface;
-use Canopy\Ecommerce\Repositories\Interfaces\OrderInterface;
-use Canopy\Ecommerce\Repositories\Interfaces\ProductInterface;
-use Canopy\Ecommerce\Services\Products\GetProductService;
-use Canopy\Ecommerce\Services\Products\StoreProductService;
-use Canopy\Ecommerce\Tables\Reports\TopSellingProductsTable;
-use Canopy\Media\RvMedia;
-use Canopy\Payment\Enums\PaymentStatusEnum;
-use Canopy\Slug\Repositories\Interfaces\SlugInterface;
-use EmailHandler;
-use Illuminate\Http\JsonResponse;
-use OrderHelper;
-use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use Illuminate\Support\Facades\App;
+use Cart;
+use Throwable;
 use SlugHelper;
+use OrderHelper;
+use EmailHandler;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use Canopy\Media\RvMedia;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Routing\Controller;
-use Throwable;
+use Illuminate\Support\Facades\App;
+use Canopy\Ecommerce\Models\Product;
+use Canopy\Base\Enums\BaseStatusEnum;
+use Canopy\Ecommerce\Models\Wishlist;
+use Canopy\Base\Events\CreatedContentEvent;
+use Canopy\Ecommerce\Enums\OrderStatusEnum;
+use Canopy\Ecommerce\Models\NotifyWhenBack;
+use Canopy\Payment\Enums\PaymentStatusEnum;
+use Canopy\Base\Http\Responses\BaseHttpResponse;
+use Canopy\Ecommerce\Http\Resources\TalentResource;
+use Canopy\Ecommerce\Http\Requests\EditAccountRequest;
+use Canopy\Slug\Repositories\Interfaces\SlugInterface;
+use Canopy\Ecommerce\Http\Requests\TalentCreateRequest;
+use Canopy\Ecommerce\Http\Resources\ListTalentResource;
+use Canopy\Ecommerce\Services\Products\GetProductService;
+use Canopy\Blog\Repositories\Interfaces\CategoryInterface;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use Canopy\Ecommerce\Services\Products\StoreProductService;
+use Canopy\Ecommerce\Repositories\Interfaces\OrderInterface;
+use Canopy\Ecommerce\Tables\Reports\TopSellingProductsTable;
+use Canopy\Ecommerce\Repositories\Interfaces\ReviewInterface;
+use Canopy\Ecommerce\Repositories\Interfaces\TalentInterface;
+use Canopy\Ecommerce\Repositories\Interfaces\ProductInterface;
+use Canopy\Ecommerce\Repositories\Interfaces\CustomerInterface;
+use Canopy\Ecommerce\Repositories\Interfaces\WishlistInterface;
+use Canopy\Ecommerce\Http\Resources\CustomerOrderHistoryResource;
+use Canopy\Ecommerce\Repositories\Interfaces\OrderHistoryInterface;
+use Canopy\Ecommerce\Http\Resources\ListTalentSearchResultsResource;
 
 class TalentController extends Controller
 {
@@ -177,6 +179,7 @@ class TalentController extends Controller
      */
     public function get($id, Request $request, BaseHttpResponse $response)
     {
+
         $product = $this->productRepository->getModel()
             ->where('talent_id', $id)
             ->with('owner', 'owner.account', 'owner.account.notifications')
@@ -518,4 +521,103 @@ class TalentController extends Controller
 
         return response()->json($count);
     }
+
+    /**
+     * It checks if the product is already in the wishlist, if it is, it returns the count of likes and
+     * a boolean value of true, if not, it returns the count of likes and a boolean value of false
+     * 
+     * @param productId The id of the product you want to get the likes for.
+     */
+    public function talent_likes($productId)
+    {
+
+        try {
+            /* Finding the product by the id. */
+            $product = $this->productRepository->findOrFail($productId);
+
+            if (!$product) {
+                return response()->json(['status' => 404, 'message' => 'No data found']);
+            }
+
+            /* Checking if the product is already in the wishlist. */
+            $duplicates = Cart::instance('wishlist')->search(function ($cartItem) use ($productId) {
+                return $cartItem->id == $productId;
+            });
+
+            /* Checking if the user has already liked the product. If the user has already liked the
+            product, it will return the count of likes and the follow status. */
+            if (!$duplicates->isEmpty()) {
+                return (['count' => $product->likes->count(), 'follow' => true]);
+            }
+
+            /* The above code is creating a new array with the count of the likes and the follow status. */
+            $data = ['count' => $product->likes->count(), 'follow' => false, 'status' => 200];
+
+            /* Returning a JSON response. */
+            return response()->json($data);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => 500, 
+                'message' => 'Something went wrong!'
+            ]);
+        }
+
+        
+
+    }
+
+    public function talent_likes_store($productId)
+    {
+
+        try {
+
+            $customerId = auth('api-customer')->user();
+
+            $product = $this->productRepository->findOrFail($productId);
+
+            if ($customerId) {
+
+                $wishlist = Wishlist::where('customer_id', $customerId->id)
+                                ->where('product_id', $productId)->first();
+
+                if ($wishlist) {
+                    $wishlist->delete();
+
+                    return response()->json([
+                        'status' => 200, 
+                        'message' => __('Your have removed :product to your favorites!', ['product' => $product->name])
+                    ]);
+
+                }else {
+                    $this->wishlistRepository->create([
+                        'product_id'  => $productId,
+                        'customer_id' => $customerId->id,
+                    ]);
+
+                    return response()->json([
+                        'status' => 200, 
+                        'message' => __('Your have added :product to your favorites!', ['product' => $product->name])
+                    ]);
+                }
+                
+            }else {
+                return response()->json([
+                    'status' => 404, 
+                    'message' => 'user does not exist'
+                ]);
+            }
+
+        } catch (\Throwable $th) {
+            return response()->json([
+                'status' => 500, 
+                'message' => 'Something went wrong!'
+            ]);
+        }
+
+        
+    }
+
+
+
+    // ENDS
 }

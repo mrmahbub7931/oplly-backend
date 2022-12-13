@@ -3,21 +3,27 @@
 namespace Canopy\Dashboard\Http\Controllers;
 
 use Assets;
-use Canopy\ACL\Repositories\Interfaces\UserInterface;
-use Canopy\Base\Http\Controllers\BaseController;
-use Canopy\Base\Http\Responses\BaseHttpResponse;
-use Canopy\Dashboard\Repositories\Interfaces\DashboardWidgetInterface;
-use Canopy\Dashboard\Repositories\Interfaces\DashboardWidgetSettingInterface;
 use Exception;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use Illuminate\View\View;
+use Illuminate\Contracts\View\Factory;
+use Canopy\Payment\Enums\PaymentStatusEnum;
+use Canopy\Base\Http\Controllers\BaseController;
+use Canopy\Base\Http\Responses\BaseHttpResponse;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Canopy\ACL\Repositories\Interfaces\UserInterface;
+use Canopy\Ecommerce\Repositories\Interfaces\OrderInterface;
+use Canopy\Dashboard\Repositories\Interfaces\DashboardWidgetInterface;
+use Canopy\Dashboard\Repositories\Interfaces\DashboardWidgetSettingInterface;
 
 class DashboardController extends BaseController
 {
 
+    /**
+     * @var OrderInterface
+     */
+    protected $orderRepository;
     /**
      * @var DashboardWidgetSettingInterface
      */
@@ -42,11 +48,13 @@ class DashboardController extends BaseController
     public function __construct(
         DashboardWidgetSettingInterface $widgetSettingRepository,
         DashboardWidgetInterface $widgetRepository,
-        UserInterface $userRepository
+        UserInterface $userRepository,
+        OrderInterface $order
     ) {
         $this->widgetSettingRepository = $widgetSettingRepository;
         $this->widgetRepository = $widgetRepository;
         $this->userRepository = $userRepository;
+        $this->orderRepository = $order;
     }
 
     /**
@@ -76,8 +84,8 @@ class DashboardController extends BaseController
             ])
             ->select(['id', 'name'])
             ->get();
-
         $widgetData = apply_filters(DASHBOARD_FILTER_ADMIN_LIST, [], $widgets);
+
         ksort($widgetData);
 
         $availableWidgetIds = collect($widgetData)->pluck('id')->all();
@@ -85,10 +93,66 @@ class DashboardController extends BaseController
         $widgets = $widgets->reject(function ($item) use ($availableWidgetIds) {
             return !in_array($item->id, $availableWidgetIds);
         });
+        $count = [];
+        $count['revenueToday'] = $this->orderRepository
+            ->getModel()
+            ->whereBetween('ec_orders.created_at', [now()->startOfDay()->toDateString(), now()->toDateString()])
+            ->join('payments', 'payments.order_id', '=', 'ec_orders.id')
+            ->where('payments.status', PaymentStatusEnum::COMPLETED)
+            ->sum('sub_total');
+        
+        $count['revenueWeek'] = $this->orderRepository
+            ->getModel()
+            ->whereBetween('ec_orders.created_at', [now()->startOfWeek()->toDateString(), now()->endOfWeek()->toDateString()])
+            ->join('payments', 'payments.order_id', '=', 'ec_orders.id')
+            ->where('payments.status', PaymentStatusEnum::COMPLETED)
+            ->sum('sub_total');
+
+        $count['revenueMonth'] = $this->orderRepository
+            ->getModel()
+            ->whereBetween('ec_orders.created_at', [now()->startOfMonth()->toDateString(), now()->toDateString()])
+            ->join('payments', 'payments.order_id', '=', 'ec_orders.id')
+            ->where('payments.status', PaymentStatusEnum::COMPLETED)
+            ->sum('sub_total');
+        
+        $count['revenueYear'] = $this->orderRepository
+            ->getModel()
+            ->whereYear('ec_orders.created_at', date('Y'))
+            ->join('payments', 'payments.order_id', '=', 'ec_orders.id')
+            ->where('payments.status', PaymentStatusEnum::COMPLETED)
+            ->sum('sub_total');
+
+        $count['requestDay'] = $this->orderRepository
+            ->getModel()
+            ->whereBetween('ec_orders.created_at', [now()->startOfDay()->toDateString(),now()->toDateString()])
+            ->join('payments','payments.order_id','=','ec_orders.id')
+            ->where('payments.status', PaymentStatusEnum::COMPLETED)
+            ->count();
+
+        $count['requestWeek'] = $this->orderRepository
+            ->getModel()
+            ->whereBetween('ec_orders.created_at', [now()->startOfWeek()->toDateString(),now()->endOfWeek()->toDateString()])
+            ->join('payments','payments.order_id','=','ec_orders.id')
+            ->where('payments.status', PaymentStatusEnum::COMPLETED)
+            ->count();
+        
+        $count['requestMonth'] = $this->orderRepository
+            ->getModel()
+            ->whereBetween('ec_orders.created_at', [now()->startOfMonth()->toDateString(),now()->toDateString()])
+            ->join('payments','payments.order_id','=','ec_orders.id')
+            ->where('payments.status', PaymentStatusEnum::COMPLETED)
+            ->count();
+        
+        $count['requestYear'] = $this->orderRepository
+            ->getModel()
+            ->whereYear('ec_orders.created_at',date('Y'))
+            ->join('payments','payments.order_id','=','ec_orders.id')
+            ->where('payments.status', PaymentStatusEnum::COMPLETED)
+            ->count();
 
         $userWidgets = collect($widgetData)->pluck('view')->all();
 
-        return view('core/dashboard::list', compact('widgets', 'userWidgets'));
+        return view('core/dashboard::list', compact('widgets', 'userWidgets','count'));
     }
 
     /**

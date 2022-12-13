@@ -641,6 +641,24 @@
         <div class="flexbox-layout-section-secondary mt20">
           <div class="ui-layout__item">
             <div class="wrapper-content mb20">
+              <div class="next-card-section">
+                  <form action="{{ route('orders.notes') }}" id="orderNotesForm">
+                      <input type="hidden" name="order_id" value="{{ $order->id }}">
+                      @if (!empty($order->notes_date))
+                      <label for="notes_date" class="text-title-field">Note Date</label>
+                      <input type="text" name="notes_date" class="next-field--connected next-input z-index-9" value="{{ \Carbon\Carbon::parse($order->notes_date)->toDateTimeString() }}" readonly>
+                      @endif
+                      <label for="notes" class="mt-2">Note</label>
+                      <textarea class="ui-text-area" name="notes" rows="3">{{ $order->notes }}</textarea>
+                      @if (!empty($order->agent))
+                      <label for="agent" class="mt-2">Agent</label>
+                      <input type="text" class="next-input" name="agent" value="{{ $order->agent }}" readonly>
+                      @endif
+                      <button type="submit" class="btn btn-info mt-2 btn-add-note">Save</button>
+                  </form>
+              </div>
+            </div>
+            <div class="wrapper-content mb20">
               <div class="next-card-section p-none-b">
                 <div class="flexbox-grid-default flexbox-align-items-center">
                   <div class="flexbox-auto-content-left">

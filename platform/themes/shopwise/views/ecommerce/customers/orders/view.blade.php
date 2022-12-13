@@ -168,7 +168,7 @@
               @endif
               <div class="upload--video--section">
                   <div class="card-body">
-            @if ($order->video and in_array($order->status, ['completed', 'released']))
+            @if ($order->video and in_array($order->status, ['completed']))
               <div class="final--video">
                 <video width="480" height="640" controls="">
                   <source src="{{ RvMedia::getImageUrl($order->video, null, false) }}" type="video/mp4">

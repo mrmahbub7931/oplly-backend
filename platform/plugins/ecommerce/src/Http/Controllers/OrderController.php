@@ -519,6 +519,22 @@ class OrderController extends BaseController
     }
 
     /**
+     * @param Request $request
+     * @param BaseHttpResponse $response
+     * @return BaseHttpResponse
+     * @throws Throwable
+     */
+    public function postNotes(Request $request, BaseHttpResponse $response): BaseHttpResponse
+    {
+        $order = $this->orderRepository->findOrFail($request->input('order_id'));
+        $order->notes_date = Carbon::now();
+        $order->notes =  $request->notes;
+        $order->agent = Auth::user()->getFullName();
+        $this->orderRepository->createOrUpdate($order);
+        return $response->setMessage(trans('plugins/ecommerce::order.note_saved')); 
+    }
+
+    /**
      * @param int $id
      * @param BaseHttpResponse $response
      * @return BaseHttpResponse

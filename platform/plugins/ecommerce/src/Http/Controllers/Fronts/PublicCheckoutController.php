@@ -266,6 +266,15 @@ class PublicCheckoutController
     }
 
     /**
+     * @param Request $request
+     */
+    public function getOccasion(Request $request){
+        $id = $request->occasionId;
+        $occasion = $this->occasionRepository->getModel()->where('id',$id)->get();
+        return $occasion;
+    }
+
+    /**
      * @param string $token
      * @param array $sessionData
      * @param Request $request

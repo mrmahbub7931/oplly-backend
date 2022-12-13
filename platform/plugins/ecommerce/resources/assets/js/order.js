@@ -326,6 +326,35 @@ class OrderAdminManagement {
                 }
             });
         });
+        
+        // note update
+        $(document).on('click', '.btn-add-note', event => {
+            event.preventDefault();
+            let _self = $(event.currentTarget);
+            console.log(_self);
+            _self.addClass('button-loading');
+
+            $.ajax({
+                type: 'POST',
+                cache: false,
+                url: _self.closest('form').prop('action'),
+                data: _self.closest('form').serialize(),
+                success: res => {
+                    // console.log(res);
+                    if (!res.error) {
+                        Canopy.showSuccess(res.message);
+                        $('#main-order-content').load(window.location.href + ' #main-order-content > *');
+                    } else {
+                        Canopy.showError(res.message);
+                    }
+                    _self.removeClass('button-loading');
+                },
+                error: res => {
+                    Canopy.handleError(res);
+                    _self.removeClass('button-loading');
+                }
+            });
+        });
 
         $(document).on('click', '.btn-trigger-cancel-order', event => {
             event.preventDefault();

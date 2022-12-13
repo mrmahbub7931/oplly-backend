@@ -145,6 +145,9 @@ class CustomerForm extends FormAbstract
             ->add('customer_reports_table', 'html', [
                 'html' => '<div id="customer-report-table">' . view("plugins/ecommerce::customers.widgets.reports-table", ['customer_id' => $this->getModel()->id]) . '</div>',
             ])
+            ->add('customer_history', 'html', [
+                'html' => '<div id="customer-history-block">' . view("plugins/ecommerce::customers.widgets.customer-history", ['customer_id' => $this->getModel()->id]) . '</div>',
+            ])
             ->add('talent_id', 'number', [
                 'label'      => __('Linked Talent ID'),
                 'label_attr' => ['class' => 'control-label required'],

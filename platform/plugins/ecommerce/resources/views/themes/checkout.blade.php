@@ -121,8 +121,22 @@ $products = get_products([
           <li class="@if($occasion->show_standard) show--default @endif @if($occasion->show_business) show--business @endif">
             <label class="btn" for="occasion_{{ $occasion->id }}">
               <input type="radio" class="btn-check" name="occasion_id" id="occasion_{{ $occasion->id }}" autocomplete="off" value="{{ $occasion->id }}">
-              <img src="{{ RvMedia::getImageUrl($occasion->image, null, false, RvMedia::getDefaultImage()) }}" alt="{{ $occasion->name }}" />
-              <span>{{ $occasion->name }}</span></label>
+              <div class="occasion-section occasion-btn" data-url="{{ route('occasion')}}" data-occasion_id="{{ $occasion->id }}">
+                <div class="occasion-content">
+                  <img class="m-0" src="{{ RvMedia::getImageUrl($occasion->image, null, false, RvMedia::getDefaultImage()) }}" alt="{{ $occasion->name }}" />
+                  <div style="padding: 10px">
+                    <h5>{{ $occasion->name }}</h5>
+                    <div class="description-section">
+                      <span>{!! Str::words(strip_tags($occasion->description), 6) !!}</span>
+                      @if($occasion->description == NULL)
+                      <span>Description is not available.</span>
+                      @endif
+                    </div>
+                    <div class="occasion-display"></div>
+                  </div>
+                </div>
+              </div>
+            </label>
           </li>
           @endforeach
         </ul>
@@ -474,6 +488,34 @@ $products = get_products([
       $('.price .sub-total-text').html(symbol + total.toFixed(2));
       $('.total-price .raw-total-text').html(symbol + newPrice.toFixed(2)); // total
     }
+
+    var occasion_array = $(".occasion-btn");
+    $.each(occasion_array, function(index, item){
+      $(item).on('click',function(e){
+        var occasionUrl = $(this).data("url"),
+            occasionId  = $(this).data("occasion_id");
+
+        $.ajax({
+            url: occasionUrl,
+            method: 'GET',
+            data: {
+              occasionId : occasionId
+            },
+            dataType: 'json',
+            success: res =>{ 
+              var description = res[0].description != null ? res[0].description : 'Description is not available.';
+              
+              if($(item).parent().parent().find('.occasion-display').children().length == 0){
+                $(item).parent().parent().find('.description-section').hide();
+                $(item).parent().parent().find('.occasion-display').html('<span>'+description+'</span>');
+              }else {
+                $(item).parent().parent().find('.occasion-display').html('');
+                $(item).parent().parent().find('.description-section').show();
+              }
+            }
+        });
+      });
+    });
 
 
     $(document).on('discount-coupon-applied', function(e, data) {

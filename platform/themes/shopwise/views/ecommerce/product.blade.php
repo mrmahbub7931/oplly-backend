@@ -500,6 +500,8 @@ $selectedAttrs = $product->defaultVariation->productAttributes->pluck('id')->all
       }
     });
   }
+
+  
   
   // Script added for video gallery popop
   $('.product-video-gallery-model .close-popup').click(function() {
